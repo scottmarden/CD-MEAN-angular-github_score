@@ -1,0 +1,16 @@
+<form (submit)="runSearch(data.username)" #scoreForm="ngForm">
+	<input type="text" name="username" [(ngModel)]="data.username" #username="ngModel" required />
+	<button type="submit" [disabled]="!scoreForm.valid">Calculate My Score!</button>
+</form>
+
+<div id="error">
+	<h3 *ngIf="error">Username not found, please try again.</h3>
+</div>
+<div [hidden]="!user">
+	<h3 *ngIf="user">Score: {{userScore}}</h3>
+	<h3 *ngIf="userScore && userScore < 20" class="red">Needs Work</h3>
+	<h3 *ngIf="userScore < 50 && userScore >= 20" class="yellow">A decent start!</h3>
+	<h3 *ngIf="userScore < 100 && userScore >= 50" class="black">Doing good!</h3>
+	<h3 *ngIf="userScore < 200 && userScore >= 100" class="green">Great job!</h3>
+	<h3 *ngIf="userScore >= 200" class="blue">Github elite!</h3>
+</div>
